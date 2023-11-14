@@ -41,6 +41,15 @@ export default {
         thumbnailSrc: src,
       };
     },
+    async getData() {
+      try {
+        let result = await getAllMovies();
+        this.list = result.contents;
+      } catch (error) {
+        //TODO implement error handler
+        console.error(error);
+      }
+    },
   },
 
   setup() {
@@ -52,9 +61,7 @@ export default {
     };
   },
   mounted() {
-    getAllMovies().then((result) => {
-      this.list = result.contents;
-    });
+    this.getData();
   },
 };
 </script>
